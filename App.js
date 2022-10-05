@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View,FlatList, Image } from 'react-native';
-import { getPokemons, searchPokemon, getPokemonData } from './api';
+import { Button, StyleSheet, View,FlatList } from 'react-native';
+import { getPokemons, getPokemonData } from './api';
+import Pokemon from './components/Pokemon'
 
 export default function App() {
   const [page, setPage] = useState(0);
@@ -14,7 +15,6 @@ export default function App() {
       setLoading(true)
       const data = await getPokemons(itensPerPage, itensPerPage * page);
       const promises = data.results.map(async (pokemon) => {
-        await getPokemonData('https://pokeapi.co/api/v2/language/13/')
         return await getPokemonData(pokemon.url);
       });
       const results = await Promise.all(promises)
@@ -43,23 +43,23 @@ export default function App() {
   },[page])
   
   const renderItem = ({ item }) => {
-    let imgUrI = item['sprites']['versions']['generation-v']['black-white']['animated']['front_default']
+    let imgUri = item['sprites']['versions']['generation-v']['black-white']['animated']['front_default']
     return(
     <Pokemon
         name={item.name}
-        srcImg={imgUrI}
+        srcImg={imgUri}
+        types = {item.types}
     /> 
   );}
   
   return (
     <View style={styles.container}>
       
-      
-       
       <FlatList
         data={pokemons}
         renderItem={renderItem}
         keyExtractor={item => item.id}
+        showsVerticalScrollIndicator={false}
       />
       <Button 
       onPress={setNextPage}
@@ -74,9 +74,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flex:1,
+    backgroundColor: '#adbac0',
   },
 });

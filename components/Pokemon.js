@@ -1,19 +1,27 @@
 import React from 'react'
 import { StyleSheet, View, Image, Text } from 'react-native';
 
-export default function Pokemon() {
+export default function Pokemon(props) {
+  const {name,srcImg,types} = props
+  const nameUppercase = name.charAt(0).toUpperCase() + name.slice(1)
   return (
     <View style={styles.card}>
       <View style={styles.esquerda}>
-        <Image style={styles.img} source={require("../assets/images/pikachu.png")} />
+        <Image style={styles.img} source={{uri: srcImg}} />
       </View>
       <View style={styles.direita}>
         <View style={styles.nomePokemon}>
-          <Text style={styles.nome}>Pikachu</Text>
+          <Text style={styles.nome}>{nameUppercase}</Text>
         </View>
         <View style={styles.tipoPokemon}>
-          <Text style={styles.tipo}>Elétrico</Text>
-          <Text style={styles.tipo}>Elétrico</Text>
+          {types.map((type, index) => {
+                    const typeUppercase = type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)
+                    return (
+                     <Text style={styles.tipo}  >{typeUppercase}</Text>
+                    )
+                })}
+          
+          
         </View>
       </View>
     </View>
@@ -24,11 +32,12 @@ export default function Pokemon() {
 const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
-    backgroundColor: '#fff',
+    backgroundColor: '#f6f6f6',
     width: "95%",
-    height: "20%",
+    height: 120,
+    borderRadius: 10,
+    alignSelf: "center",
     marginTop: 15,
-    borderRadius: 10
   },
 
   esquerda: {
@@ -53,7 +62,7 @@ const styles = StyleSheet.create({
   nome: {
     fontSize: 25,
     fontWeight: 'bold',
-    marginLeft: 20
+    marginLeft: 20,
   },
   tipoPokemon: {  
     height: '70%',
@@ -63,6 +72,7 @@ const styles = StyleSheet.create({
   tipo: {
     fontSize: 15,
     fontWeight: 'bold',
+    marginTop: 5,
     marginLeft: 15,
     backgroundColor: 'yellow',
     padding: 10,
