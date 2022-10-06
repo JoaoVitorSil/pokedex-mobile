@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, View,FlatList } from 'react-native';
+import Constants from 'expo-constants'
 import { getPokemons, getPokemonData } from './api';
 import Pokemon from './components/Pokemon'
+import Logo from "./components/Logo";
 
 export default function App() {
   const [page, setPage] = useState(0);
@@ -54,20 +56,25 @@ export default function App() {
   
   return (
     <View style={styles.container}>
-      
+      <StatusBar style="auto" />
+
+      <Logo/>
       <FlatList
         data={pokemons}
         renderItem={renderItem}
         keyExtractor={item => item.id}
         showsVerticalScrollIndicator={false}
       />
-      <Button 
-      onPress={setNextPage}
-      title="Proxima"></Button>
-      <Button 
-      onPress={setPreviousPage}
-      title="Voltar"></Button>
-      <StatusBar style="auto" />
+      <View style={styles.buttons}>
+        <Button 
+          onPress={setPreviousPage}
+          title="Voltar">
+        </Button>
+        <Button 
+          onPress={setNextPage}
+          title="Proxima">
+        </Button>
+      </View>
     </View>
   );
 }
@@ -75,6 +82,13 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex:1,
-    backgroundColor: '#adbac0',
+    backgroundColor: '#333333',
+    marginTop: Constants.statusBarHeight,
   },
+  buttons: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    paddingTop: 10,
+    marginBottom: 10,
+  }
 });
