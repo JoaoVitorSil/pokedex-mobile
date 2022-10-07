@@ -62,7 +62,6 @@ export default function App() {
       <FlatList
         data={pokemons}
         renderItem={renderItem}
-        keyExtractor={item => item.id}
         showsVerticalScrollIndicator={false}
       />
       <View style={styles.buttons}>
