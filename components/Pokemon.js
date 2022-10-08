@@ -1,18 +1,19 @@
 import React from "react";
 import { StyleSheet, View, Image, Text } from "react-native";
-import { colorType } from "../styles/colors";
+import { cardColorType, colorType } from "../styles/colors";
 export default function Pokemon(props) {
-  const { name, srcImg, types } = props;
+  const { id, name, srcImg, types } = props;
   const nameUppercase = name.charAt(0).toUpperCase() + name.slice(1);
 
   return (
-    <View style={[styles.card, colorType(types)]}>
+    <View key={id} style={[styles.card, cardColorType(types[0].type.name)]}>
       <View style={styles.esquerda}>
         <Image style={styles.img} source={{ uri: srcImg }} />
       </View>
       <View style={styles.direita}>
         <View style={styles.nomePokemon}>
           <Text style={styles.nome}>{nameUppercase}</Text>
+          <Text style={{color: 'white'}} >#{id}</Text>
         </View>
         <View style={styles.tipoPokemon}>
           {types.map((type, index) => {
@@ -29,6 +30,7 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: "row",
     backgroundColor: "#f6f6f6",
+    padding: 8,
     width: "95%",
     height: 120,
     borderRadius: 10,
@@ -52,13 +54,15 @@ const styles = StyleSheet.create({
   },
   nomePokemon: {
     height: "30%",
-    justifyContent: "flex-end",
+    justifyContent: "space-between",
+    flexDirection:'row',
   },
   nome: {
     fontSize: 25,
     fontWeight: "bold",
-    marginLeft: 20,
-  },
+    marginLeft: 16,
+    color:'white' 
+     },
   tipoPokemon: {
     height: "70%",
     flexDirection: "row",

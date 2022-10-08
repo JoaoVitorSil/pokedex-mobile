@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, View,FlatList } from 'react-native';
+import { Button, StyleSheet, View,FlatList} from 'react-native';
 import Constants from 'expo-constants'
 import { getPokemons, getPokemonData } from './api';
 import Pokemon from './components/Pokemon'
-import Logo from "./components/Logo";
+import Logo from "./styles/logo";
+import Loading from "./components/Loading";
 
 export default function App() {
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(false);
   const [pokemons, setPokemons] = useState([]);
-  const itensPerPage = 15;
+  const itensPerPage = 10;
   const fetchPokemons = async ()=>{
     try{
       setLoading(true)
@@ -45,9 +46,11 @@ export default function App() {
   },[page])
   
   const renderItem = ({ item }) => {
-    let imgUri = item['sprites']['versions']['generation-v']['black-white']['animated']['front_default']
+    //let imgUri = item['sprites']['versions']['generation-v']['black-white']['animated']['front_default']
+    let imgUri = item['sprites']['front_default']
     return(
     <Pokemon
+        id = {item.id}
         name={item.name}
         srcImg={imgUri}
         types = {item.types}
@@ -59,11 +62,15 @@ export default function App() {
       <StatusBar style="auto" />
 
       <Logo/>
-      <FlatList
+      {loading ? (<Loading/>) : 
+      
+      (<FlatList
         data={pokemons}
         renderItem={renderItem}
+        keyExtractor = {item => item.id}
         showsVerticalScrollIndicator={false}
-      />
+      />)}
+      
       <View style={styles.buttons}>
         <Button 
           onPress={setPreviousPage}
