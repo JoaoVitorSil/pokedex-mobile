@@ -7,7 +7,7 @@ import Pokemon from '../components/Pokemon'
 import Logo from "../styles/logo";
 import Loading from "../components/Loading";
 
-export default function Home() {
+export default function Home({navigation}) {
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -50,6 +50,7 @@ export default function Home() {
     let imgUri = item['sprites']['front_default']
     return(
     <Pokemon
+        navigation = {navigation}
         id = {item.id}
         name={item.name}
         srcImg={imgUri}
