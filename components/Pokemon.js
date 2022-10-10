@@ -7,7 +7,7 @@ export default function Pokemon(props) {
   const nameUppercase = name.charAt(0).toUpperCase() + name.slice(1);
 
   return (
-    <TouchableOpacity onPress={()=> navigation.navigate('PokemonStats')} key={id} style={[styles.card, cardColorType(types[0].type.name)]}>
+    <TouchableOpacity onPress={()=> navigation.navigate('PokemonStats',{ id: id })} key={id} style={[styles.card, cardColorType(types[0].type.name)]}>
       <View style={styles.esquerda}>
         <Image style={styles.img} source={{ uri: srcImg }} />
       </View>
