@@ -3,7 +3,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from './screens/Home';
-import PokemonStats from './screens/PokemonStats';
+import PokemonDetails from './screens/PokemonDetails';
 
 const Stack = createStackNavigator();
 
@@ -12,7 +12,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
           <Stack.Screen name="Home" component={Home} options={{headerShown: false}}/>
-          <Stack.Screen name="PokemonStats" component={PokemonStats} options={{title: 'Pokemon Stats'}} />
+          <Stack.Screen name="PokemonDetails" component={PokemonDetails} options={{title: 'Pokemon Details'}} />
       </Stack.Navigator>
     </NavigationContainer>
     

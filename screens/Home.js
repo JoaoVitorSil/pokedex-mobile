@@ -55,6 +55,10 @@ export default function Home({navigation}) {
         name={item.name}
         srcImg={imgUri}
         types = {item.types}
+        abilities = {item.abilities}
+        height = {item.height}
+        weight = {item.weight}
+        stats= {item.stats}
     /> 
   );}
   

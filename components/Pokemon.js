@@ -3,11 +3,14 @@ import { StyleSheet, View, Image, Text, TouchableOpacity } from "react-native";
 import { cardColorType, colorType } from "../styles/colors";
 
 export default function Pokemon(props) {
-  const {navigation, id, name, srcImg, types } = props;
+  const {navigation, id, name, srcImg, types, abilities, height, weight, stats } = props;
   const nameUppercase = name.charAt(0).toUpperCase() + name.slice(1);
 
   return (
-    <TouchableOpacity onPress={()=> navigation.navigate('PokemonStats',{ id: id })} key={id} style={[styles.card, cardColorType(types[0].type.name)]}>
+    <TouchableOpacity onPress={()=> navigation.navigate('PokemonDetails',
+    { id: id, name: name, types: types, abilities: abilities, height: height, weight: weight, stats: stats })} 
+    style={[styles.card, cardColorType(types[0].type.name)]}>
+
       <View style={styles.esquerda}>
         <Image style={styles.img} source={{ uri: srcImg }} />
       </View>
