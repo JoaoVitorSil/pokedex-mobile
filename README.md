@@ -3,5 +3,6 @@ Aplicativo Mobile  em React Native de uma Pokédex desenvolvido para a disciplin
 
 O app consiste de duas telas uma de listagem de todos os pokemons e uma de detalhes do pokemon.
 
-#Demo
+# Demo
+
 ![](https://github.com/gabrielcicero45/pokedex-mobile/demo.gif)
