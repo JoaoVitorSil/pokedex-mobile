@@ -5,4 +5,4 @@ O app consiste de duas telas uma de listagem de todos os pokemons e uma de detal
 
 # Demo
 
-![](https://github.com/gabrielcicero45/pokedex-mobile/demo.gif)
+![](https://github.com/gabrielcicero45/pokedex-mobile/master/demo.gif)
